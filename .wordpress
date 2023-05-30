@@ -1,0 +1,19 @@
+cd /tmp && wget https://wordpress.org/latest.tar.gz               #install wordpress
+tar -xvf latest.tar.gz                                            #extract content of zip folder
+sudo cp -R wordpress /var/www/html/                               #copy wordpress folder to html
+sudo chown -R www-data:www-data /var/www/html/wordpress/          #change file ownership
+sudo chmod -R 755 /var/www/html/wordpress/                        #set file permission
+sudo mkdir /var/www/html/wordpress/wp-content/uploads             #create an upload folder for uploaded files
+sudo chown -R www-data:www-data /var/www/html/wordpress/wp-content/uploads   #make folder writeable
+
+#Browseip/wordpress to test installation.
+#using ip alone to connect to wordpress
+cd /etc/apache2/sites-available
+sudo vi 000-default.conf                                          #edit conf. file @ Document root: add /wordpress
+sudo systelctl restart apache2
+
+#set up wordpress using details from database configuration
+#Enabling rewrite mode for helloworld at wordpress welcome page 
+sudo a2enmod rewrite  
+cd  /etc/apache2/
+sudo vi apache2.conf:                                           #edit conf. and AllowOverride All                           
