@@ -1,0 +1,17 @@
+sudo apt install mariadb-server
+sudo mysql_secure_installation
+
+#answer y for all and create password
+
+#PHP
+sudo apt install php php-mysql
+sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip 
+
+#Database Configuration
+mysql -u root -p 
+CREATE DATABASE wordpress_db;
+CREATE USER 'new_user'@'localhost' IDENTIFIED BY 'password';  # user:new_user, password:password. if error is encountered use next step
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';  #  user:root, password:new_password 
+GRANT ALL ON wordpress_db. * TO 'root'@'localhost' IDENTIFIED BY 'new_password';
+FLUSH PRIVILEGES;
+EXIT;
